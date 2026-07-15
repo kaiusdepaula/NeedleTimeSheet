@@ -28,6 +28,12 @@ Grab the `.whl` file and:
 pipx install needletimesheet-0.1.0-py3-none-any.whl
 ```
 
+On Windows, pip works directly:
+
+```bash
+pip install needletimesheet-0.1.0-py3-none-any.whl
+```
+
 To upgrade later:
 
 ```bash
@@ -38,13 +44,13 @@ pipx install needletimesheet-0.2.0-py3-none-any.whl
 Or from source:
 
 ```bash
-git clone <this-repo>
+git clone https://github.com/kaiusdepaula/NeedleTimeSheet
 cd NeedleTimesheet
 uv sync
 uv run needle
 ```
 
-Requires Python ≥ 3.12. Reads cookies from **Firefox** or **Chrome** — log into Needle in one of them first.
+Requires Python ≥ 3.12. Reads cookies from **Firefox** or **Chrome**. Log into Needle in one of them first.
 
 ## Usage
 
