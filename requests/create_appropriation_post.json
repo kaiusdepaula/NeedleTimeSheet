@@ -1,0 +1,65 @@
+{
+  "appropriationsFirstPeriod": [
+    {
+      "hourEntry": "08:55",
+      "hourDeparture": "11:55",
+      "hourType": "Normal",
+      "projectId": 6460,
+      "taskId": 62448,
+      "observation": "atv",
+      "date": "2026-07-07",
+      "origem": "PONTO",
+      "segmentoId": null,
+      "seqJornadaReal": 1
+    },
+    {
+      "projectId": 6070,
+      "taskId": 61652,
+      "hourEntry": "11:56",
+      "hourDeparture": "11:57",
+      "observation": "atv",
+      "date": "2026-07-07",
+      "origem": null,
+      "segmentoId": null,
+      "seqJornadaReal": null
+    }
+  ],
+  "appropriationsSecondPeriod": [
+    {
+      "hourEntry": "12:58",
+      "hourDeparture": "13:58",
+      "hourType": "Normal",
+      "projectId": 6460,
+      "taskId": 62448,
+      "observation": "atv",
+      "date": "2026-07-07",
+      "origem": "PONTO",
+      "segmentoId": null,
+      "seqJornadaReal": 2
+    },
+    {
+      "projectId": 7844,
+      "taskId": 67099,
+      "hourEntry": "13:59",
+      "hourDeparture": "14:59",
+      "observation": "atv",
+      "date": "2026-07-07",
+      "origem": null,
+      "segmentoId": null,
+      "seqJornadaReal": null
+    },
+    {
+      "projectId": 6070,
+      "taskId": 61652,
+      "hourEntry": "15:00",
+      "hourDeparture": "17:55",
+      "observation": "atv",
+      "date": "2026-07-07",
+      "origem": null,
+      "segmentoId": null,
+      "seqJornadaReal": null
+    }
+  ],
+  "appropriationsThirdPeriod": [],
+  "appropriationsFourthPeriod": []
+}
