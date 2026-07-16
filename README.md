@@ -12,13 +12,15 @@ Clicking through dropdowns to allocate 8 hours across 3 projects, once a day, ev
 
 ## How it works
 
-1. Reads your Firefox cookies to authenticate with Needle (you must be logged in).
+1. Reads your **Firefox** cookies to authenticate with Needle (you must be logged in).
 2. Fetches your clock-in/out periods for the day. The punches are already there.
 3. Asks how many minutes/hours go to each project. Type `r` on one to dump the remainder.
 4. Schedules the allocations across your periods. Asks for a task per project (arrow keys again).
 5. Preview, confirm, submit.
 
 That's it. No dropdowns, no searching, no "atv" typing 4 times.
+
+> If you are using firefox from the Microsoft Store, this tool won't work. Please install it from the official firefox installer and log into needle.
 
 ## Install
 

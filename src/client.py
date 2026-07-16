@@ -3,6 +3,7 @@ import httpx
 import json
 import re
 import os
+import sys
 
 from config import PAGE_URL, PROJECTS_ENDPOINT, REGISTERED_ENDPOINT, APPROPRIATIONS_ENDPOINT, \
     TASKS_ENDPOINT, CREATE_ENDPOINT, HEADERS
@@ -12,14 +13,25 @@ from models import Project, Task, AppropriationsResponse, Appropriation, CreateA
 
 from datetime import date
 
+if sys.platform == "win32":
+    import truststore
+    truststore.inject_into_ssl()
+
 def _get_cookies():
-    for source in [browser_cookie3.firefox, browser_cookie3.chrome]:
+    """Load Needle auth cookies from the browser, trying host and domain patterns."""
+    for source in [browser_cookie3.firefox, browser_cookie3.chrome, browser_cookie3.edge]:
         try:
-            return source(domain_name="needle.aircompany.ai")
+            for domain in (
+                "needle.aircompany.ai", # Works in Linux
+                ".aircompany.ai" # Works in Windows
+            ):
+                cj = source(domain_name=domain)
+                if list(cj):
+                    return cj
         except browser_cookie3.BrowserCookieError:
             continue
     raise RuntimeError(
-        "No Needle cookies found in Firefox or Chrome. "
+        "No Needle cookies found in Firefox, Chrome, or Edge. "
         "Log into Needle in one of them first."
     )
 
@@ -40,7 +52,7 @@ class NeedleClient:
         )
         response.raise_for_status()
         return response.json()
-    
+
     def get_projects(self, dataAppropriation: date) -> list[Project]:
         return TypeAdapter(list[Project]).validate_python(
             self._get(
@@ -57,7 +69,7 @@ class NeedleClient:
                 p_id_projeto=p_id_projeto,
             )
         )
-    
+
 
     def get_user_id(self) -> int:
         """Scrape the logged-in user's ID from the Needle page. Cached to ~/.needle_user_id."""
@@ -81,7 +93,7 @@ class NeedleClient:
                 userId=user_id,
             )
         ).items
-    
+
     def get_registered_appropriations(self, user_id: int) -> list[Appropriation]:
         return TypeAdapter(AppropriationsResponse).validate_python(
             self._get(
@@ -182,5 +194,3 @@ if __name__ == "__main__":
 # """
 #         )
 #     )
-
-# # https://needle.aircompany.ai/pls/interno/WHSVISUALIZAATIVIDADE?hseq=11057342&hprojeto=6460&hfuncionario=22423&hatividade=85&hOper=Visualizar
