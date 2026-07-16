@@ -44,15 +44,6 @@ def _read_key() -> str:
 
     return ch
 
-def _ask_date_manual() -> date:
-    value = input(
-        f"Date [{date.today()}]: "
-    ).strip()
-    if not value:
-        return date.today()
-    return date.fromisoformat(value)
-
-
 def _default_index(available_dates: list[date]) -> int:
     today = date.today()
     if today in available_dates:
@@ -67,50 +58,36 @@ def _default_index(available_dates: list[date]) -> int:
 
 def ask_date(available_dates: list[date]) -> date:
     """This function reupdates the terminal to get correct data input"""
-    if not available_dates:
-        print("No appropriable days found — enter a date manually.")
-        return _ask_date_manual()
-
     available_dates = sorted(available_dates)
     idx = _default_index(available_dates)
     print(
         f"{BOLD}Date{RESET} "
         f"({CYAN}\u2190/\u2192{RESET} to move between appropriable days, "
-        f"{GREEN}Enter{RESET} to confirm, "
-        f"{YELLOW}Esc{RESET} to type manually)"
+        f"{GREEN}Enter{RESET} to confirm."
     )
-    try:
-        while True:
-            day = available_dates[idx]
-            sys.stdout.write(
-                f"\r{' ' * 50}\r"
-                f"> {day.isoformat()} ({day.strftime('%A')})"
-                f"  [{idx + 1}/{len(available_dates)}]"
-            )
-            sys.stdout.flush()
 
-            key = _read_key()
+    while True:
+        day = available_dates[idx]
+        sys.stdout.write(
+            f"\r{' ' * 50}\r"
+            f"> {day.isoformat()} ({day.strftime('%A')})"
+            f"  [{idx + 1}/{len(available_dates)}]"
+        )
+        sys.stdout.flush()
 
-            if key in LEFT:
-                idx = max(0, idx - 1)
+        key = _read_key()
 
-            elif key in RIGHT:
-                idx = min(len(available_dates) - 1, idx + 1)
+        if key in LEFT:
+            idx = max(0, idx - 1)
 
-            elif key in ENTER:
-                print()
-                return day
+        elif key in RIGHT:
+            idx = min(len(available_dates) - 1, idx + 1)
 
-            elif key in ESC:
-                print()
-                return _ask_date_manual()
+        elif key in ENTER:
+            return day
 
-            elif key in CTRL_C:
-                raise KeyboardInterrupt
-
-    except OSError:
-        print()
-        return _ask_date_manual()
+        elif key in CTRL_C:
+            raise KeyboardInterrupt
 
 
 def ask_task_id(available_tasks: list[Task]) -> int:

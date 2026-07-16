@@ -42,6 +42,10 @@ def main():
             date.fromisoformat(item.data)
             for item in appropriations_list
         ]
+        if not available_dates:
+            print("No appropriable days found. You are up to date!")
+            return
+        
         day = ask_date(available_dates)
 
         print("\nFetching projects...")
@@ -77,8 +81,8 @@ def main():
             allocations,
             lazy =  arguments.lazy,
         )
-        observation = input("\nObservation (default = atv):").strip()
-        observation = "atv" if observation == "" else observation
+        observation = input("\nObservation (default = Atividades Gerais):").strip()
+        observation = "Atividade Geral" if observation == "" else observation
 
         print_preview(day, intervals)
 

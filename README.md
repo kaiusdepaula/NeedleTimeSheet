@@ -2,11 +2,11 @@
 
 > Your timesheet is already filled. You just haven't told Needle yet.
 
-Clicking through dropdowns to allocate 8 hours across 3 projects, twice a day, every day. The data's already there. Your punches, your projects, your tasks. Needle Timesheet reads what Needle already knows, asks you *how much time goes where*, and submits.
+Clicking through dropdowns to allocate 8 hours across 3 projects, once a day, every day. The data's already there. Your punches, your projects, your tasks. Needle Timesheet reads what Needle already knows, asks you *how much time goes where*, and submits.
 
 ## Before / after
 
-**Before:** log into Needle → find the timesheet page → for each period, click "add appropriation" → search the project dropdown → search the task dropdown → type start/end times → type "atv" → repeat. Mistime a click and the dropdown resets.
+**Before:** log into Needle → click the day with a red icon → for each period, click "add appropriation" → search the project dropdown → search the task dropdown → type start/end times → type "Atividades Gerais" → if in multiple projects, add a new period split, add end time on last project and begin time on second, plus a minute  → repeat. Miscount a appropriation you'll need to exclude it all and do it all again.
 
 **After:** `needle` → arrow keys to pick a day → type how many hours per project → enter. Done.
 
