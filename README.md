@@ -28,11 +28,12 @@ Grab the `.whl` file and:
 pipx install needletimesheet-0.1.0-py3-none-any.whl
 ```
 
-On Windows, pip works directly:
+On **Windows**, pip works directly:
 
 ```bash
 pip install needletimesheet-0.1.0-py3-none-any.whl
 ```
+**Windows users:** Please note that you may need to add your scripts folder into PATH. Pip will warn you of that.
 
 To upgrade later:
 
