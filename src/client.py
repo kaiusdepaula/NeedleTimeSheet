@@ -14,7 +14,7 @@ from models import Project, Task, AppropriationsResponse, Appropriation, CreateA
 from datetime import date
 
 
-domain = "needle.aircompany.ai" # default domain in browser that works in linux
+domain = "needle.aircompany.ai" # default domain. (works on linux, but not windows)
 if sys.platform == "win32":
     import truststore
     truststore.inject_into_ssl()
@@ -30,8 +30,8 @@ def _get_cookies():
         except browser_cookie3.BrowserCookieError:
             continue
     raise RuntimeError(
-        "No Needle cookies found in Firefox, Chrome, or Edge. "
-        "Log into Needle in one of them first."
+        "No Needle cookies found. "
+        "Refresh the Needle page in Firefox, wait a few seconds, then try again."
     )
 
 
@@ -43,13 +43,21 @@ class NeedleClient:
             timeout=30,
         )
     def _get(self, endpoint: str, **params) -> dict:
-        response = self.client.get(
-            endpoint,
-            params={
-                "p_params": json.dumps(params)
-            },
-        )
-        response.raise_for_status()
+        try:
+            response = self.client.get(
+                endpoint,
+                params={
+                    "p_params": json.dumps(params)
+                },
+            )
+            response.raise_for_status()
+        except httpx.HTTPStatusError as e:
+            if e.response.status_code == 401:
+                raise RuntimeError(
+                    "Needle session expired. "
+                    "Refresh the Needle page in Firefox, wait a few seconds, then try again."
+                ) from e
+            raise
         return response.json()
 
     def get_projects(self, dataAppropriation: date) -> list[Project]:
