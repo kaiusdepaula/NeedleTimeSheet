@@ -13,21 +13,20 @@ from models import Project, Task, AppropriationsResponse, Appropriation, CreateA
 
 from datetime import date
 
+
+domain = "needle.aircompany.ai" # default domain in browser that works in linux
 if sys.platform == "win32":
     import truststore
     truststore.inject_into_ssl()
+    domain = ".aircompany.ai"
 
 def _get_cookies():
     """Load Needle auth cookies from the browser, trying host and domain patterns."""
     for source in [browser_cookie3.firefox, browser_cookie3.chrome, browser_cookie3.edge]:
         try:
-            for domain in (
-                "needle.aircompany.ai", # Works in Linux
-                ".aircompany.ai" # Works in Windows
-            ):
-                cj = source(domain_name=domain)
-                if list(cj):
-                    return cj
+            cj = source(domain_name=domain)
+            if list(cj):
+                return cj
         except browser_cookie3.BrowserCookieError:
             continue
     raise RuntimeError(
