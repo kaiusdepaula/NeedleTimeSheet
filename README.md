@@ -18,13 +18,17 @@ Clicking through dropdowns to allocate 8 hours across 3 projects, once a day, ev
 4. Schedules the allocations across your periods. Asks for a task per project (arrow keys again).
 5. Preview, confirm, submit.
 
-That's it. No dropdowns, no searching, no "atv" typing 4 times.
+That's it. No dropdowns, no searching, no "Atividade..." typing 4 times.
 
 > If you are using firefox from the Microsoft Store, this tool won't work. Please install it from the official firefox installer and log into needle.
 
+It's that simple! Take a look:
+
+![Demo](demo.gif)
+
 ## Install
 
-Grab the `.whl` file and:
+Grab the `.whl` file, located in the `releases` tab in this repository page, open a terminal at the `Downloads` folder and:
 
 ```bash
 pipx install needletimesheet-0.1.0-py3-none-any.whl
@@ -67,7 +71,7 @@ Arrow keys to pick a day, type allocations, confirm. That's the happy path.
 needle --lazy
 ```
 
-Skips the task picker. Automatically selects "Atividade Geral" for every project. Falls back to the picker if it can't find one.
+**Skips the task picker. (My favorite argument)** Automatically selects "Atividade Geral" for every project. Falls back to the picker if it can't find one.
 
 ```bash
 needle --debug
@@ -87,7 +91,3 @@ When asked how much time to allocate, any of these work:
 | `1h30m` | 1h30m |
 | `90m` | 1h30m |
 | `r` | dump all remaining minutes here |
-
-## License
-
-MIT
